@@ -1,29 +1,17 @@
-import React from 'react';
+import React from "react";
 
-// import { Footer, Blog, Possibility, Features, WhatGPT3, Header } from './containers';
-// import { CTA, Brand, Navbar } from './components';
+import { Background, Initial, Questions } from "./components";
 
-import './style/App.css';
-import yellow from "./images/blob 5.png"
-import violet from "./images/blobs.png"
+import "./style/App.css";
 
-const App = () => (
-  <div className="App">
-    <img className="back--yellow" src={yellow} alt="back blob y"/>
-    <img className="back--violet" src={violet} alt="back blob" v/>
-    App
-    {/* <div className="gradient__bg">
-      <Navbar />
-      <Header />
-    </div>
-    <Brand />
-    <WhatGPT3 />
-    <Features />
-    <Possibility />
-    <CTA />
-    <Blog />
-    <Footer /> */}
-  </div>
-);
+export default function App() {
+    // Indica se está no estado inicial ou não
+    const [init, setInit] = React.useState(true);
 
-export default App;
+    return (
+        <div className="App">
+            <Background />
+            {init ? <Initial /> : <Questions />}
+        </div>
+    );
+}

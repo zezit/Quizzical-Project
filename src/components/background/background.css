@@ -1,0 +1,11 @@
+.back--yellow {
+    position: absolute;
+    border-top-right-radius: 5px;
+    right: 0;
+}
+
+.back--violet {
+    position: absolute;
+    border-bottom-left-radius: 5px;
+    bottom: 0;
+}

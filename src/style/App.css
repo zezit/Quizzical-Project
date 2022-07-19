@@ -5,22 +5,17 @@
     scroll-behavior: smooth;
 }
 
+body{
+    background-color: var(--color-light-violet);
+}
+
 .App {
+    font-family: var(--font-family);
     position: relative;
     display: block;
     margin: 20px auto;
-    background-color: blue;
+    background-color: var(--color-light-text);
     width: 550px;
     height: 550px;
     border-radius: 5px;
-}
-
-.back--yellow {
-    position: absolute;
-    right: 0;
-}
-
-.back--violet {
-    position: absolute;
-    bottom: 0;
 }
