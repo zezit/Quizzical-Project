@@ -14,11 +14,24 @@ export default function App() {
             .then((data) => setOptions(data.trivia_categories));
     }, []);
 
-    const initGame = () => {
-        fetch("https://opentdb.com/api_category.php")
+    // pega as opções selecionadas, faz o request e inicia o jogo
+    const initGame = (category, difficulty) => {
+        let request = "https://opentdb.com/api.php?amount=5";
+        if (category != 0) {
+            request = `${request}&category=${category}`;
+        }
+        if (difficulty != 0) {
+            request = `${request}&difficulty=${difficulty}`;
+        }
+
+        request.concat("&type=multiple");
+
+        fetch(request)
             .then((res) => res.json())
             .then((data) => setOptions(data.trivia_categories));
         setInit(() => false);
+
+        console.log(request);
     };
 
     return (

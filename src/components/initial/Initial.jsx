@@ -5,18 +5,32 @@ import "./initial.css";
 export default function Initial(props) {
     const difficultyElements = [
         {
-            id: 0,
+            id: "easy",
             name: "Easy",
         },
         {
-            id: 1,
+            id: "medium",
             name: "Medium",
         },
         {
-            id: 0,
+            id: "hard",
             name: "Hard",
         },
     ];
+
+    let category = 0;
+    const setCategory = (actual) =>{
+        category = actual
+    }
+
+    let difficulty = "";
+    const setDifficulty = (actual) =>{
+        difficulty = actual
+    }
+
+    const initGame = () => {
+        props.setInit(category,difficulty)
+    };
 
     return (
         <div className="initial--screen">
@@ -25,11 +39,17 @@ export default function Initial(props) {
                 Choose your options before start!
             </span>
             <div className="initial--all-options">
-                <Selection type="Category" options={props.categories} />
-                <Selection type="Difficulty" options={difficultyElements} />
+                <Selection type="Category" 
+                options={props.categories} 
+                actualSelected={setCategory}
+                />
+                <Selection type="Difficulty" 
+                options={difficultyElements}
+                actualSelected={setDifficulty}
+                />
             </div>
             <div className="initial--button">
-                <button onClick={props.setInit}>Start quiz</button>
+                <button onClick={initGame}>Start quiz</button>
             </div>
         </div>
     );

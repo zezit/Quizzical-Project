@@ -9,14 +9,18 @@ const Selection = (props) => {
         </option>
     ));
 
+    const handleSelection = (event)=>{
+        props.actualSelected(event.target.value)
+    }
+
     return (
         <div className="Selection">
             <label for="options">{`${props.type}:`}</label>
 
-            <select name="options" className="options">
+            <select name="options" className="options" onChange={handleSelection}>
                 <option
                     className="option"
-                    value="volvo"
+                    value={0}
                 >{`Any ${props.type}`}</option>
                 {categoryElements}
             </select>
