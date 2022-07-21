@@ -6,6 +6,10 @@ export default function App() {
     // Indica se está no estado inicial ou não
     const [init, setInit] = React.useState(true);
     const [options, setOptions] = React.useState([]);
+    const [questions, setQuestions] = React.useState([]);
+
+    let request = " ";
+    let allComps = [];
 
     // Get categories
     React.useEffect(() => {
@@ -14,9 +18,21 @@ export default function App() {
             .then((data) => setOptions(data.trivia_categories));
     }, []);
 
+    // Get questions
+    const getQuestions = () => {
+        async function getData() {
+            const response = await fetch(request);
+            const json = await response.json();
+            setQuestions(json.results);
+            setInit(() => false);
+        }
+        getData();
+    };
+
     // pega as opções selecionadas, faz o request e inicia o jogo
     const initGame = (category, difficulty) => {
-        let request = "https://opentdb.com/api.php?amount=5";
+        request = "https://opentdb.com/api.php?amount=5&type=multiple";
+
         if (category != 0) {
             request = `${request}&category=${category}`;
         }
@@ -24,14 +40,7 @@ export default function App() {
             request = `${request}&difficulty=${difficulty}`;
         }
 
-        request.concat("&type=multiple");
-
-        fetch(request)
-            .then((res) => res.json())
-            .then((data) => setOptions(data.trivia_categories));
-        setInit(() => false);
-
-        console.log(request);
+        getQuestions();
     };
 
     return (
@@ -40,7 +49,7 @@ export default function App() {
             {init ? (
                 <Initial categories={options} setInit={initGame} />
             ) : (
-                <Questions />
+                <Questions data={questions} />
             )}
         </div>
     );

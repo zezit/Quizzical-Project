@@ -10,12 +10,13 @@ body{
 }
 
 .App {
+    /* z-index: -101; */
     font-family: var(--font-family);
     position: relative;
     display: block;
     margin: 20px auto;
     background-color: var(--color-light-text);
     width: 550px;
-    height: 550px;
+    min-height: 550px;
     border-radius: 5px;
 }
